@@ -1,43 +1,10 @@
-import { GoogleCalendar } from 'datebook'
-import open from 'open';
+import { addNewEvent } from "./common.js";
 
-
-
-
-/**
- * 
- * @param {*} title event title
- * @param {*} start Date obj - start time
- * @param {*} end Date obj - end time
- */
-const addNewEvent = (title, start, end) => {
-  const googleCalendar = new GoogleCalendar({
-    title: title,
-    // location: 'The Bar, New York, NY',
-    // description: 'Let\'s blow off some steam from our weekly deployments to enjoy a tall cold one!',
-    start: start,
-    end: end,
-    // recurrence: {
-    //   frequency: 'WEEKLY',
-    //   interval: 2
-    // }
-  })
-
-  const link = googleCalendar.render();
-  // Open the URL in the default web browser
-  open(link)
-    .then(() => {
-      console.log(`Successfully opened ${link} in the default browser.`);
-    })
-    .catch((error) => {
-      console.error(`Error opening ${link} in the default browser:`, error);
-  });
-}
 
 
 const main = ()=>{
   const args = process.argv;
-  if (args.length < 3) {
+  if (args.length < 4) {
     console.error('Please provide one or more arguments.');
     process.exit(1); // Exit the script with an error code
   }
@@ -55,4 +22,7 @@ const main = ()=>{
   addNewEvent(title, startTime, curTime);
 }
 
-main()
+
+// This code block will only execute if the script is run directly
+main();
+
